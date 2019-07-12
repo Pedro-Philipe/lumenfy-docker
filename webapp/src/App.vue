@@ -7,7 +7,6 @@
             dark
             color="primary">
             <v-toolbar-side-icon
-                v-if="status.loggedIn"
                 @click.stop="drawer = !drawer"/>
             <v-toolbar-title v-text="title"/>
             <notificacao-badge

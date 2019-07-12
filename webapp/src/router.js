@@ -109,23 +109,12 @@ router.beforeEach((to, from, next) => {
     const publicPages = [
         '/login',
         '/cadastrar',
+        '/formulario-dois',
+        '/formulario-tres',
+        '/',
     ];
 
-    const authRequired = !publicPages.includes(to.path);
-    const loggedIn = localStorage.getItem('token');
-
-    if (to.path === '/logout') {
-        store.dispatch('alert/info', 'Logout realizado com sucesso.', { root: true });
-        return next('/login');
-    }
-
-    if (authRequired && !loggedIn) {
-        return next('/login');
-    }
-
     try {
-        obterInformacoesJWT();
-
         return next();
     } catch (Exception) {
         localStorage.removeItem('token');

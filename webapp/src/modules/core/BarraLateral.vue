@@ -1,6 +1,5 @@
 <template>
     <v-navigation-drawer
-        v-if="status.loggedIn"
         :mini-variant="miniVariant"
         v-model="drawer"
         clipped="clipped"
@@ -22,7 +21,7 @@
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                        <v-list-tile-title>{{ accountInfo.name }}</v-list-tile-title>
+                        <v-list-tile-title>José</v-list-tile-title>
                     </v-list-tile-content>
 
                     <v-list-tile-action>
@@ -96,33 +95,18 @@ export default {
             const menusLaterais = [
                 {
                     icon: 'home',
-                    title: 'Formulario1',
+                    title: 'Formulário - Inscrição - Conselho de Cultura',
                     to: '/',
                 },
                 {
                     icon: 'home',
-                    title: 'Formulario2',
+                    title: 'Formulário - Inscrição - Eleitor',
                     to: '/formulario-dois',
                 },
                 {
                     icon: 'home',
-                    title: 'Formulario3',
+                    title: 'Formulário - Inscrição - Organização ou Entidade Cultural',
                     to: '/formulario-tres',
-                },
-                {
-                    icon: 'chat',
-                    title: 'Notificacao',
-                    to: '/notificacao',
-                },
-                {
-                    icon: 'info',
-                    title: 'Sobre',
-                    to: '/sobre',
-                },
-                {
-                    icon: 'chat',
-                    title: '(Teste) Chat/WebSocket',
-                    to: '/websocket',
                 },
             ];
             if (this.accountInfo.is_admin === true) {
