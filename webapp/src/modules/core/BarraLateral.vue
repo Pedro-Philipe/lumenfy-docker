@@ -96,8 +96,18 @@ export default {
             const menusLaterais = [
                 {
                     icon: 'home',
-                    title: 'Início',
+                    title: 'Formulario1',
                     to: '/',
+                },
+                {
+                    icon: 'home',
+                    title: 'Formulario2',
+                    to: '/formulario-dois',
+                },
+                {
+                    icon: 'home',
+                    title: 'Formulario3',
+                    to: '/formulario-tres',
                 },
                 {
                     icon: 'chat',

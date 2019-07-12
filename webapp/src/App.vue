@@ -52,8 +52,18 @@ export default {
             items: [
                 {
                     icon: 'home',
-                    title: 'Início',
+                    title: 'Form1',
                     to: '/',
+                },
+                {
+                    icon: 'home',
+                    title: 'Form2',
+                    to: '/formulario-dois',
+                },
+                {
+                    icon: 'home',
+                    title: 'Form3',
+                    to: '/formulario-tres',
                 },
                 // {
                 //   icon: 'chat',
@@ -89,7 +99,7 @@ export default {
             miniVariant: false,
             right: true,
             rightDrawer: false,
-            title: 'Notification WebApp',
+            title: 'Título',
         };
     },
     computed: {

@@ -5,6 +5,8 @@ import Cadastrar from './modules/conta/Cadastrar.vue';
 import WebSocket from './modules/websocket/WebSocket.vue';
 import Administracao from './modules/core/Administracao.vue';
 import Home from './modules/core/Home.vue';
+import FormularioDois from './modules/core/FormularioDois.vue';
+import FormularioTres from './modules/core/FormularioTres.vue';
 import NaoEncontrado from './modules/core/NaoEncontrado.vue';
 import Sobre from './modules/core/Sobre.vue';
 import Plataforma from './modules/plataforma/Plataforma.vue';
@@ -25,6 +27,14 @@ const routesObject = [
     {
         path: '/cadastrar',
         component: Cadastrar,
+    },
+    {
+        path: '/formulario-dois',
+        component: FormularioDois,
+    },
+    {
+        path: '/formulario-tres',
+        component: FormularioTres,
     },
     {
         path: '*',
