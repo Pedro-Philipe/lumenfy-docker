@@ -16,7 +16,7 @@
                             >
                                 <v-container fluid grid-list-xl>
 
-                                    <h2>Dados do Representante</h2>
+                                    <h2>Dados do Eleitor</h2>
 
                                     <v-layout wrap align-center>
                                         <v-flex xs12 sm4 >
@@ -50,20 +50,21 @@
                                     <v-layout wrap align-center>
                                         <v-flex xs12 sm6 >
                                             <v-text-field
+                                                    v-model="email"
                                                     label="*E-mail"
                                                     append-icon="mail"
                                                     placeholder="email@exemplo.com"
                                                     :rules="[rules.required, rules.email]"
-                                                    v-model="emailRepresentative"
                                                     required
                                             ></v-text-field>
                                         </v-flex>
                                         <v-flex xs12 sm6>
                                             <v-text-field
+                                                    v-model="emailConfirmation"
                                                     label="*Confirmar e-mail"
                                                     append-icon="mail"
                                                     placeholder="email@exemplo.com"
-                                                    :rules="[rules.required, rules.email]"
+                                                    :rules="[rules.required, rules.email, rules.emailMatch(email, emailConfirmation)]"
                                                     required
                                             ></v-text-field>
                                         </v-flex>
@@ -226,9 +227,8 @@ export default {
                 sortable: false,
             },
         ],
-        emailCouncil: '',
-        emailRepresentative: '',
-        emailCouncilConfirmation: '',
+        email: '',
+        emailConfirmation: '',
         rules: {
             required: v => !!v || 'Campo não preenchido',
             phoneMin: v => (v && v.length >= 9) || 'Mínimo de 9 caracteres',
@@ -237,7 +237,8 @@ export default {
                 // eslint-disable-next-line
                 const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return pattern.test(v) || 'E-mail invalido';
-            }
+            },
+            emailMatch: (email, emailConfirmation) => email == emailConfirmation || 'Os emails não correspondem'
         },
     }),
     watch: {

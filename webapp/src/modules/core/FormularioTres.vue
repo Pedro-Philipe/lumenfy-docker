@@ -192,6 +192,29 @@
                                         </v-layout>
 
                                         <v-layout wrap align-center>
+                                            <v-flex xs12 sm6 >
+                                                <v-text-field
+                                                        label="*CPF"
+                                                        append-icon="person"
+                                                        placeholder="999.999.999.99"
+                                                        mask="###.###.###.##"
+                                                        :rules="[rules.required]"
+                                                        required
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6 >
+                                                <v-text-field
+                                                        label="*RG"
+                                                        append-icon="person"
+                                                        placeholder="99.999.999-9"
+                                                        mask="##.###.###-#"
+                                                        :rules="[rules.required]"
+                                                        required
+                                                ></v-text-field>
+                                            </v-flex>
+                                        </v-layout>
+
+                                        <v-layout wrap align-center>
                                             <v-flex xs12 sm6>
                                                 <v-text-field
                                                         label="*E-mail do Responsável"

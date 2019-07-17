@@ -4,6 +4,7 @@ $router->get('/', function () use ($router) {
     return redirect()->route('api');
 });
 
+
 $router->get('/api', ['as' => 'api', function () use ($router) {
     return response()->json(
         [
@@ -12,6 +13,10 @@ $router->get('/api', ['as' => 'api', function () use ($router) {
         ]
     );
 }]);
+
+$router->post('upload', [
+    'as' => 'upload', 'uses' => 'UploadController@post'
+]);
 
 define('API_VERSION', '1.0');
 $apiPattern = 'v1';

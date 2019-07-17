@@ -38,7 +38,10 @@
 
                                         <v-layout>
                                             <v-flex xs12 sm4>
-                                                <v-radio-group row>
+                                                <v-radio-group
+                                                        row
+                                                        :rules="[rules.required]"
+                                                >
                                                     <v-radio label="Estadual" value="radio-1"></v-radio>
                                                     <v-radio label="Capital" value="radio-2"></v-radio>
                                                 </v-radio-group>
@@ -46,17 +49,7 @@
                                         </v-layout>
 
                                         <v-layout>
-                                            <v-flex xs12 sm4>
-                                                <v-select
-                                                        :items="['Selecione', 'DF','GO']"
-                                                        label="*Unidade da Federação"
-                                                        append-icon="place"
-                                                        :rules="[rules.required]"
-                                                        required
-
-                                                ></v-select>
-                                            </v-flex>
-                                            <v-flex xs12 sm4>
+                                            <v-flex xs12 sm6>
                                                 <v-text-field
                                                         label="*CNPJ"
                                                         append-icon="people"
@@ -66,7 +59,7 @@
                                                         required
                                                 ></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm4>
+                                            <v-flex xs12 sm6>
                                                 <v-text-field
                                                         label="*Telefone"
                                                         append-icon="phone"
@@ -148,6 +141,7 @@
                                                 <v-text-field
                                                         label="*Cidade"
                                                         append-icon="place"
+                                                        :rules="[rules.required]"
                                                 ></v-text-field>
                                             </v-flex>
                                         </v-layout>
@@ -169,6 +163,7 @@
                                     v-model="valid_representante"
                                     lazy-validation
                             >
+
                                 <v-card flat>
                                     <v-container fluid grid-list-xl>
                                         <v-layout wrap align-center>
@@ -195,6 +190,29 @@
                                         <v-layout wrap align-center>
                                             <v-flex xs12 sm6 >
                                                 <v-text-field
+                                                        label="*CPF"
+                                                        append-icon="person"
+                                                        placeholder="999.999.999.99"
+                                                        mask="###.###.###.##"
+                                                        :rules="[rules.required]"
+                                                        required
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm6 >
+                                                <v-text-field
+                                                        label="*RG"
+                                                        append-icon="person"
+                                                        placeholder="99.999.999-9"
+                                                        mask="##.###.###-#"
+                                                        :rules="[rules.required]"
+                                                        required
+                                                ></v-text-field>
+                                            </v-flex>
+                                        </v-layout>
+
+                                        <v-layout wrap align-center>
+                                            <v-flex xs12 sm6 >
+                                                <v-text-field
                                                         label="*E-mail do representante"
                                                         append-icon="mail"
                                                         placeholder="email@exemplo.com"
@@ -207,8 +225,9 @@
                                                 <v-text-field
                                                         label="*Confirmar e-mail"
                                                         append-icon="mail"
+                                                        v-model="emailRepresentativeConfirmation"
                                                         placeholder="email@exemplo.com"
-                                                        :rules="[rules.required, rules.email]"
+                                                        :rules="[rules.required, rules.email, rules.emailMatch(emailRepresentative, emailRepresentativeConfirmation)]"
                                                         required
                                                 ></v-text-field>
                                             </v-flex>
@@ -341,8 +360,9 @@ export default {
             },
         ],
         emailCouncil: '',
-        emailRepresentative: '',
         emailCouncilConfirmation: '',
+        emailRepresentative: '',
+        emailRepresentativeConfirmation: '',
         rules: {
             required: v => !!v || 'Campo não preenchido',
             phoneMin: v => (v && v.length >= 9) || 'Mínimo de 9 caracteres',
@@ -352,7 +372,7 @@ export default {
                 const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return pattern.test(v) || 'E-mail invalido';
             },
-            emailMatch: (email, emailConfirmation) => email == emailConfirmation|| 'Os emails não correspondem'
+            emailMatch: (email, emailConfirmation) => email == emailConfirmation || 'Os emails não correspondem'
         },
     }),
 

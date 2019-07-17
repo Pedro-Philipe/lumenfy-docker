@@ -4,9 +4,11 @@ import Login from './modules/conta/Login.vue';
 import Cadastrar from './modules/conta/Cadastrar.vue';
 import WebSocket from './modules/websocket/WebSocket.vue';
 import Administracao from './modules/core/Administracao.vue';
-import Home from './modules/core/Home.vue';
+import InscricaoConselhoCultura from './modules/core/InscricaoConselhoCultura.vue';
 import FormularioDois from './modules/core/FormularioDois.vue';
 import FormularioTres from './modules/core/FormularioTres.vue';
+import Inicial from './modules/core/Inicial.vue';
+import Candidato from './modules/core/Candidato.vue';
 import NaoEncontrado from './modules/core/NaoEncontrado.vue';
 import Sobre from './modules/core/Sobre.vue';
 import Plataforma from './modules/plataforma/Plataforma.vue';
@@ -15,11 +17,19 @@ import Conta from './modules/conta/Conta.vue';
 import Mensagem from './modules/mensagem/Mensagem.vue';
 import Notificacao from './modules/notificacao/Notificacao.vue';
 import store from './store';
-import { obterInformacoesJWT } from './modules/account/_helpers/jwt';
 
 Vue.use(Router);
 
 const routesObject = [
+    {
+        path: '/',
+        component: Inicial,
+    },
+    {
+        path: '/inscricao-conselho',
+        component: InscricaoConselhoCultura,
+        name: 'Inscrição de Conselhos de Cultura',
+    },
     {
         path: '/login',
         component: Login,
@@ -27,6 +37,10 @@ const routesObject = [
     {
         path: '/cadastrar',
         component: Cadastrar,
+    },
+    {
+        path: '/candidato',
+        component: Candidato,
     },
     {
         path: '/formulario-dois',
@@ -40,11 +54,6 @@ const routesObject = [
         path: '*',
         component: NaoEncontrado,
     // redirect: '/'
-    },
-    {
-        path: '/',
-        component: Home,
-        name: 'home',
     },
     {
         path: '/websocket',

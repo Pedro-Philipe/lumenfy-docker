@@ -1,30 +1,32 @@
 <template>
     <v-app>
         <barra-lateral v-model="drawer"/>
-        <v-toolbar
-            :clipped-left="clipped"
-            app
-            dark
-            color="primary">
-            <v-toolbar-side-icon
-                @click.stop="drawer = !drawer"/>
-            <v-toolbar-title v-text="title"/>
-            <notificacao-badge
-                v-show="loading"
-                v-if="status.loggedIn"/>
-            <v-spacer/>
-        </v-toolbar>
 
-        <v-content>
-            <alerta
-                v-if="alert.message != null && alert.message_type != null"
-                :color="alert.message_type"
-            >{{ alert.message }}</alerta>
-            <router-view/>
-        </v-content>
-        <!--<v-footer :fixed="fixed" app>-->
-        <!--<span>&copy; 2018</span>-->
-        <!--</v-footer>-->
+        <div>
+            <v-toolbar
+                    :clipped-left="clipped"
+                    app
+                    dark
+                    color="green darken-4">
+                <v-toolbar-side-icon
+                        @click.stop="drawer = !drawer"/>
+                <v-toolbar-title v-text="title"/>
+                <notificacao-badge
+                        v-show="loading"
+                        v-if="status.loggedIn"/>
+                <v-spacer/>
+            </v-toolbar>
+
+            <v-content v-if="this.$route.path != '/'">
+                <alerta v-if="alert.message != null && alert.message_type != null"
+                        :color="alert.message_type">{{ alert.message }}</alerta>
+                <router-view/>
+            </v-content>
+            <div v-else>
+                <router-view/>
+            </div>
+
+        </div>
     </v-app>
 </template>
 
@@ -34,6 +36,7 @@ import { mapState, mapActions, mapGetters } from 'vuex';
 import NotificacaoBadge from './modules/notificacao/NotificacaoBadge.vue';
 import BarraLateral from './modules/core/BarraLateral.vue';
 import Alerta from './modules/alert/Alerta.vue';
+import Inicial from './modules/core/Inicial';
 
 export default {
     name: 'App',
@@ -41,64 +44,19 @@ export default {
         NotificacaoBadge,
         BarraLateral,
         Alerta,
+        Inicial,
     },
     data() {
         return {
+            homePage: false,
             loading: false,
             clipped: false,
             drawer: false,
             fixed: false,
-            items: [
-                {
-                    icon: 'home',
-                    title: 'Form1',
-                    to: '/',
-                },
-                {
-                    icon: 'home',
-                    title: 'Form2',
-                    to: '/formulario-dois',
-                },
-                {
-                    icon: 'home',
-                    title: 'Form3',
-                    to: '/formulario-tres',
-                },
-                // {
-                //   icon: 'chat',
-                //   title: 'Chat Interno',
-                //   to: '/websocket',
-                // },
-                {
-                    icon: 'chat',
-                    title: 'Notificacao',
-                    to: '/notificacao',
-                },
-                {
-                    icon: 'edit',
-                    title: 'Administração',
-                    to: '/administracao',
-                },
-                {
-                    icon: 'info',
-                    title: 'Sobre',
-                    to: '/sobre',
-                },
-                {
-                    icon: 'chat',
-                    title: '(Teste) Chat/WebSocket',
-                    to: '/websocket',
-                },
-                {
-                    icon: 'exit_to_app',
-                    title: 'Sair',
-                    to: '/logout',
-                },
-            ],
             miniVariant: false,
             right: true,
             rightDrawer: false,
-            title: 'Título',
+            title: 'Vota Cultura',
         };
     },
     computed: {

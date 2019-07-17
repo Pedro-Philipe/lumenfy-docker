@@ -9,7 +9,7 @@
         app>
         <v-card
             dark
-            color="primary">
+            color="green darken-4">
             <v-list class="pa-1">
                 <v-list-tile
                     avatar
@@ -21,7 +21,7 @@
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                        <v-list-tile-title>José</v-list-tile-title>
+                        <v-list-tile-title>Vota Cultura 2019</v-list-tile-title>
                     </v-list-tile-content>
 
                     <v-list-tile-action>
@@ -95,18 +95,28 @@ export default {
             const menusLaterais = [
                 {
                     icon: 'home',
-                    title: 'Formulário - Inscrição - Conselho de Cultura',
+                    title: 'Início',
                     to: '/',
                 },
                 {
-                    icon: 'home',
-                    title: 'Formulário - Inscrição - Eleitor',
-                    to: '/formulario-dois',
+                    icon: 'how_to_vote',
+                    title: 'Votar',
+                    to: '/candidato',
                 },
                 {
-                    icon: 'home',
+                    icon: 'group',
+                    title: 'Formulário - Inscrição - Conselho de Cultura',
+                    to: '/inscricao-conselho',
+                },
+                {
+                    icon: 'color_lens',
                     title: 'Formulário - Inscrição - Organização ou Entidade Cultural',
                     to: '/formulario-tres',
+                },
+                {
+                    icon: 'assignment_ind',
+                    title: 'Formulário - Inscrição - Eleitor',
+                    to: '/formulario-dois',
                 },
             ];
             if (this.accountInfo.is_admin === true) {
@@ -116,12 +126,12 @@ export default {
                     to: '/administracao',
                 });
             }
-
-            menusLaterais.push({
-                icon: 'exit_to_app',
-                title: 'Sair',
-                to: '/logout',
-            });
+            //
+            // menusLaterais.push({
+            //     icon: 'exit_to_app',
+            //     title: 'Sair',
+            //     to: '/',
+            // });
 
             return menusLaterais;
         },
