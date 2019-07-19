@@ -11,14 +11,14 @@
                                 class="white--text">
                             <h1 class="white--text font-weight-bold display-3 text-xs-center">Eleições 2019</h1>
                             <div class="subheading mb-1 text-xs-center">Conselho Nacional de Política Cultural</div>
-                            <v-btn class="green darken-4 mt-5 white--text"
-                                   dark
-                                   large
-                                   @click="ativar_inscricao = true"
-                                   v-if="ativar_inscricao === false"
-                            >
-                                Inscreva-se
-                            </v-btn>
+                            <!--<v-btn class="green darken-4 mt-5 white&#45;&#45;text"-->
+                                   <!--dark-->
+                                   <!--large-->
+                                   <!--@click="ativar_inscricao = true"-->
+                                   <!--v-if="ativar_inscricao === false"-->
+                            <!--&gt;-->
+                                <!--Inscreva-se-->
+                            <!--</v-btn>-->
                             <v-slide-y-transition>
                                 <v-container grid-list-md
                                              text-xs-center
@@ -60,7 +60,7 @@
                               align-center>
                         <v-flex xs12 sm4 class="my-3">
                             <div class="text-xs-center">
-                                <h2 class="headline">Candidate-se ou Vote</h2>
+                                <h2 class="headline">Inscreva-se</h2>
                                 <span class="subheading">
                                 Cras facilisis mi vitae nunc
                                 </span>
@@ -88,6 +88,11 @@
                                                 Suspendisse potenti.
                                             </v-card-text>
                                         </v-card>
+                                        <div class="text-xs-center">
+                                            <v-btn primary>
+                                                Signup
+                                            </v-btn>
+                                        </div>
                                     </v-flex>
                                     <v-flex xs12 md4>
                                         <v-card class="elevation-0 transparent">
@@ -106,6 +111,11 @@
                                                 Suspendisse potenti.
                                             </v-card-text>
                                         </v-card>
+                                        <div class="text-xs-center">
+                                            <v-btn primary>
+                                                Signup
+                                            </v-btn>
+                                        </div>
                                     </v-flex>
                                     <v-flex xs12 md4>
                                         <v-card class="elevation-0 transparent">
@@ -123,6 +133,11 @@
                                                 Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt.
                                                 Suspendisse potenti.
                                             </v-card-text>
+                                            <div class="text-xs-center">
+                                                <v-btn primary>
+                                                    Signup
+                                                </v-btn>
+                                            </div>
                                         </v-card>
                                     </v-flex>
                                 </v-layout>

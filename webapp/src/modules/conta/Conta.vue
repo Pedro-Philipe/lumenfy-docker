@@ -177,7 +177,6 @@ export default {
         this.obterContas();
     },
     methods: {
-
         ...mapActions({
             obterContas: 'conta/obterContas',
             removerConta: 'conta/removerConta',

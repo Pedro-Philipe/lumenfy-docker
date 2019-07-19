@@ -11,6 +11,7 @@ import Inicial from './modules/core/Inicial.vue';
 import Candidato from './modules/core/Candidato.vue';
 import NaoEncontrado from './modules/core/NaoEncontrado.vue';
 import Sobre from './modules/core/Sobre.vue';
+import File from './modules/core/File.vue';
 import Plataforma from './modules/plataforma/Plataforma.vue';
 import Sistema from './modules/sistema/Sistema.vue';
 import Conta from './modules/conta/Conta.vue';
@@ -33,6 +34,10 @@ const routesObject = [
     {
         path: '/login',
         component: Login,
+    },
+    {
+        path: '/file',
+        component: File,
     },
     {
         path: '/cadastrar',

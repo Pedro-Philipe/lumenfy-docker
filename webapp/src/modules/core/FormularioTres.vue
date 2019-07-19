@@ -23,18 +23,16 @@
                         <v-divider></v-divider>
 
                         <v-stepper-step editable :complete="e1 > 3" step="3">
-                            Declaração de enquadramento
-                        </v-stepper-step>
-
-                        <v-divider></v-divider>
-
-                        <v-stepper-step editable :complete="e1 > 4" step="4">
                             Segmento
                         </v-stepper-step>
 
                         <v-divider></v-divider>
 
+                        <v-stepper-step editable :complete="e1 > 4" step="4">
+                            Declaração de enquadramento
+                        </v-stepper-step>
 
+                        <v-divider></v-divider>
 
                         <v-stepper-step editable :complete="e1 > 5" step="5">
                             Anexo
@@ -61,7 +59,7 @@
                                                         required
                                                 ></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm7 >
+                                            <v-flex xs12 sm5 >
                                                 <v-text-field
                                                         label="*Nome da Organização/Entidade"
                                                         append-icon="perm_identity"
@@ -69,31 +67,8 @@
                                                         required
                                                 ></v-text-field>
                                             </v-flex>
-                                        </v-layout>
 
-                                        <v-layout wrap align-center>
-                                            <v-flex xs12 sm6 >
-                                                <v-text-field
-                                                        label="*E-mail da Organização/Entidade"
-                                                        append-icon="mail"
-                                                        placeholder="email@exemplo.com"
-                                                        :rules="[rules.required, rules.email]"
-                                                        required
-                                                ></v-text-field>
-                                            </v-flex>
-                                            <v-flex xs12 sm6>
-                                                <v-text-field
-                                                        label="*Confirmar e-mail"
-                                                        append-icon="mail"
-                                                        placeholder="email@exemplo.com"
-                                                        :rules="[rules.required, rules.email]"
-                                                        required
-                                                ></v-text-field>
-                                            </v-flex>
-                                        </v-layout>
-
-                                        <v-layout wrap align-center>
-                                            <v-flex xs12 sm6>
+                                            <v-flex xs12 sm2 >
                                                 <v-text-field
                                                         label="*Telefone"
                                                         append-icon="phone"
@@ -101,6 +76,38 @@
                                                         mask="(##) #####-####"
                                                         :rules="[rules.required, rules.phoneMin]"
                                                         required
+                                                ></v-text-field>
+                                            </v-flex>
+
+                                        </v-layout>
+
+                                        <v-layout wrap align-center>
+                                            <v-flex xs12 sm4 >
+                                                <v-text-field
+                                                        data-vv-name="email"
+                                                        label="*E-mail"
+                                                        append-icon="mail"
+                                                        placeholder="email@exemplo.com"
+                                                        :rules="[rules.required, rules.email]"
+                                                        v-model="emailOrganization"
+                                                        required
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm4>
+                                                <v-text-field
+                                                        label="*Confirmar e-mail"
+                                                        append-icon="mail"
+                                                        placeholder="email@exemplo.com"
+                                                        v-model="emailOrganizationConfirmation"
+                                                        :rules="[rules.required, rules.email, rules.emailMatch(emailOrganization, emailOrganizationConfirmation)]"
+                                                        required
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm4>
+                                                <v-text-field
+                                                        label="Sítio eletrônico da Organização/Entidade"
+                                                        append-icon="public"
+                                                        :rules="[rules.url]"
                                                 ></v-text-field>
                                             </v-flex>
                                         </v-layout>
@@ -244,6 +251,37 @@
                         </v-stepper-content>
 
                         <v-stepper-content step="3">
+
+                            <v-form
+                                    ref=""
+                                    lazy-validation
+                            >
+                                <v-card flat>
+                                    <v-container fluid grid-list-xl>
+                                        <v-layout wrap align-center>
+                                            <v-flex xs12 sm6>
+                                                <v-radio-group label="*Informe o segmento no qual pretende concorrer">
+                                                    <v-radio label="Técnico-artístico" value="radio-1"></v-radio>
+                                                    <v-radio label="Patrimônio cultural" value="radio-2"></v-radio>
+                                                    <v-radio label="Culturas populares" value="radio-3"></v-radio>
+                                                    <v-radio label="Culturas dos povos indígenas" value="radio-4"></v-radio>
+                                                    <v-radio label="Expressões culturais afro-brasileiras" value="radio-5"></v-radio>
+                                                </v-radio-group>
+                                            </v-flex>
+                                        </v-layout>
+                                    </v-container>
+                                </v-card>
+                            </v-form>
+                            <v-btn color="primary">
+                                Próximo
+                            </v-btn>
+
+                            <v-btn>
+                                Cancelar
+                            </v-btn>
+                        </v-stepper-content>
+
+                        <v-stepper-content step="4">
                             <v-form
                                     ref=""
                                     lazy-validation
@@ -308,9 +346,7 @@
                                             <v-flex xs12 sm6>
                                                 <v-select
                                                         :items="['']"
-                                                        label="*Nº Participação em instâncias de formulação de política cultural"
-                                                        :rules="[rules.required]"
-                                                        required
+                                                        label="Nº Participação em instâncias de formulação de política cultural"
                                                         placeholder="Selecione"
                                                 ></v-select>
                                             </v-flex>
@@ -330,9 +366,7 @@
                                             <v-flex xs12 sm6>
                                                 <v-select
                                                         :items="['']"
-                                                        label="*Projetos na área de pesquisa ou produção do conhecimento no campo da cultura a partir de 2016"
-                                                        :rules="[rules.required]"
-                                                        required
+                                                        label="Projetos na área de pesquisa ou produção do conhecimento no campo da cultura a partir de 2016"
                                                         placeholder="Selecione"
                                                 ></v-select>
                                             </v-flex>
@@ -345,36 +379,6 @@
                                 Próximo
                             </v-btn>
                             <v-btn flat >Cancelar</v-btn>
-                        </v-stepper-content>
-
-                        <v-stepper-content step="4">
-                            <v-form
-                                    ref=""
-                                    lazy-validation
-                            >
-                                <v-card flat>
-                                    <v-container fluid grid-list-xl>
-                                        <v-layout wrap align-center>
-                                            <v-flex xs12 sm6>
-                                                <v-radio-group label="*Informe o segmento no qual pretende concorrer">
-                                                    <v-radio label="Técnico-artístico" value="radio-1"></v-radio>
-                                                    <v-radio label="Patrimônio cultural" value="radio-2"></v-radio>
-                                                    <v-radio label="Culturas populares e artesanato" value="radio-3"></v-radio>
-                                                    <v-radio label="Culturas dos povos indígenas" value="radio-4"></v-radio>
-                                                    <v-radio label="Expressões culturais afro-brasileiras" value="radio-5"></v-radio>
-                                                </v-radio-group>
-                                            </v-flex>
-                                        </v-layout>
-                                    </v-container>
-                                </v-card>
-                            </v-form>
-                            <v-btn color="primary">
-                                Próximo
-                            </v-btn>
-
-                            <v-btn>
-                                Cancelar
-                            </v-btn>
                         </v-stepper-content>
 
                         <v-stepper-content step="5">
@@ -460,6 +464,8 @@ export default {
         valid: false,
         date: '',
         e1: 1,
+        emailOrganization: '',
+        emailOrganizationConfirmation: '',
         dateFormatted: '',
         menu: false,
         headers: [
@@ -485,7 +491,15 @@ export default {
                 // eslint-disable-next-line
                 const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return pattern.test(v) || 'E-mail invalido';
-            }
+            },
+            url: v => {
+            // eslint-disable-next-line
+                const pattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+                if(v)
+                    return pattern.test(v) || 'Sítio invalido';
+                return true
+            },
+            emailMatch: (email, emailConfirmation) => email === emailConfirmation || 'Os emails não correspondem'
         },
     }),
     watch: {

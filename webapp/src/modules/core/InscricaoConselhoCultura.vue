@@ -39,8 +39,8 @@
                                         <v-layout>
                                             <v-flex xs12 sm4>
                                                 <v-radio-group
-                                                        row
-                                                        :rules="[rules.required]"
+                                                    row
+                                                    :rules="[rules.required]"
                                                 >
                                                     <v-radio label="Estadual" value="radio-1"></v-radio>
                                                     <v-radio label="Capital" value="radio-2"></v-radio>
@@ -49,30 +49,38 @@
                                         </v-layout>
 
                                         <v-layout>
-                                            <v-flex xs12 sm6>
+                                            <v-flex xs12 sm3>
                                                 <v-text-field
-                                                        label="*CNPJ"
-                                                        append-icon="people"
-                                                        placeholder="99.999.999/9999-99"
-                                                        mask="##.###.###/####-##"
-                                                        :rules="[rules.required, rules.cnpjMin]"
-                                                        required
+                                                    label="*CNPJ do Orgão Gestor do Conselho"
+                                                    append-icon="people"
+                                                    placeholder="99.999.999/9999-99"
+                                                    mask="##.###.###/####-##"
+                                                    :rules="[rules.required, rules.cnpjMin]"
+                                                    required
                                                 ></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm6>
+                                            <v-flex xs12 sm7>
                                                 <v-text-field
-                                                        label="*Telefone"
-                                                        append-icon="phone"
-                                                        placeholder="(99) 99999-9999"
-                                                        mask="(##) #####-####"
-                                                        :rules="[rules.required, rules.phoneMin]"
-                                                        required
+                                                    label="*Nome do órgão gestor de cultura"
+                                                    append-icon="people"
+                                                    :rules="[rules.required, rules.cnpjMin]"
+                                                    required
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm2>
+                                                <v-text-field
+                                                    label="*Telefone"
+                                                    append-icon="phone"
+                                                    placeholder="(99) 99999-9999"
+                                                    mask="(##) #####-####"
+                                                    :rules="[rules.required, rules.phoneMin]"
+                                                    required
                                                 ></v-text-field>
                                             </v-flex>
                                         </v-layout>
 
                                         <v-layout wrap align-center>
-                                            <v-flex xs12 sm6 >
+                                            <v-flex xs12 sm4 >
                                                 <v-text-field
                                                         data-vv-name="email"
                                                         label="*E-mail"
@@ -83,7 +91,7 @@
                                                         required
                                                 ></v-text-field>
                                             </v-flex>
-                                            <v-flex xs12 sm6>
+                                            <v-flex xs12 sm4>
                                                 <v-text-field
                                                         label="*Confirmar e-mail"
                                                         append-icon="mail"
@@ -91,6 +99,13 @@
                                                         v-model="emailCouncilConfirmation"
                                                         :rules="[rules.required, rules.email, rules.emailMatch(emailCouncil, emailCouncilConfirmation)]"
                                                         required
+                                                ></v-text-field>
+                                            </v-flex>
+                                            <v-flex xs12 sm4>
+                                                <v-text-field
+                                                        label="Sítio eletrônico do conselho"
+                                                        append-icon="public"
+                                                        :rules="[rules.url]"
                                                 ></v-text-field>
                                             </v-flex>
                                         </v-layout>
@@ -371,6 +386,11 @@ export default {
                 // eslint-disable-next-line
                 const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return pattern.test(v) || 'E-mail invalido';
+            },
+            url: v => {
+                // eslint-disable-next-line
+                const pattern = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+                return pattern.test(v) || 'Sítio eletrônico invalido';
             },
             emailMatch: (email, emailConfirmation) => email == emailConfirmation || 'Os emails não correspondem'
         },
