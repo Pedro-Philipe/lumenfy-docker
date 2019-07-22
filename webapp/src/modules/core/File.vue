@@ -6,7 +6,6 @@
                     <file-pond
                         ref="pond"
                         :max-file-size="maxFileSize"
-                        max-total-file-size="10MB"
                         :accepted-file-types="acceptedFileTypes"
                         v-bind:files="file"
                         @addfile="setBase64Value"
@@ -40,7 +39,7 @@
                         label-max-total-file-size="Tamanho máximo de arquivos é {filesize}"
                     />
                 </v-flex>
-                {{maxFileSize}}
+                {{fileBase64}}
             </v-layout>
         </v-container>
 
@@ -48,7 +47,7 @@
 </template>
 
 <script>
-    import vueFilePond from 'vue-filepond';
+    import vueFilePond, { setOptions } from 'vue-filepond';
 
     import 'filepond/dist/filepond.min.css';
 
@@ -97,7 +96,7 @@
                     }
                 }
             },
-            callbacks: {
+            options: {
                 type: Object,
                 default: () => {}
             }
@@ -109,12 +108,7 @@
             };
         },
         mounted() {
-            console.log(this.callbacks)
-            // Object.keys(this.callbacks).forEach(function(key,index) {
-            //    console.log(key)
-            // });
-            // console.log(this.callbacks[0]())
-            console.log(this.$refs.pond)
+            setOptions(this.options);
         },
         methods: {
             setBase64Value: function() {
